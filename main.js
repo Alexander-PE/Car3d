@@ -52,7 +52,7 @@ function car() {
 
   const main = new THREE.Mesh(
     new THREE.BoxGeometry(80, 15, 30),
-    new THREE.MeshLambertMaterial({ color: 0x78b14b })
+    new THREE.MeshLambertMaterial({ color: 'red' })
   )
   main.position.y = 13;
   main.position.x = 8;
@@ -65,13 +65,29 @@ function car() {
   cabin.position.y = 24
   car.add(cabin);
 
+  document.addEventListener("keydown", onDocumentKeyDown, false);
+  function onDocumentKeyDown(event) {
+    var keyCode = event.keyCode;
+    console.log(keyCode)
+    if (keyCode == 87) {
+      car.position.x += 1; // forward
+    } else if (keyCode == 83) {
+      car.position.x -= 1; // back
+    } else if (keyCode == 65) {
+      car.rotateOnAxis(new THREE.Vector3(0, 1, 0), 0.1); // left
+    } else if (keyCode == 68) {
+      car.rotateOnAxis(new THREE.Vector3(0, 1, 0), -0.1); // right
+    } else if (keyCode == 32) {
+      car.position.set(0, 0, 0);
+    }
+    renderer.render(scene, camera);
+  };
+
   return car
 }
 
-
-
-scene.add(car());
-
+const carRender = car()
+scene.add(carRender);
 renderer.render(scene, camera);
 
 
