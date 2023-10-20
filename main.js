@@ -50,22 +50,29 @@ function car() {
   front.rotateX(Math.PI / 2);
   car.add(front);
 
-  const main = new THREE.Shape();
-  main.moveTo(-40, 8);
-  main.bezierCurveTo( 50, 2, 50, 11, 10, 30 );
+  const main = new THREE.Mesh(
+    new THREE.BoxGeometry(80, 15, 30),
+    new THREE.MeshLambertMaterial({ color: 0x78b14b })
+  )
+  main.position.y = 13;
+  main.position.x = 8;
+  car.add(main);
+  // const main = new THREE.Shape();
+  // main.moveTo(-40, 8);
+  // main.bezierCurveTo( 50, 2, 50, 11, 10, 30 );
 
-  const extrudeSettings = {
-    depth: 8,
-    bevelEnabled: true,
-    bevelSegments: 2,
-    steps: 2,
-    bevelSize: 1,
-    bevelThickness: 1
-  };
-  const geometry = new THREE.ExtrudeGeometry(main, extrudeSettings);
-  const mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial());
+  // const extrudeSettings = {
+  //   depth: 8,
+  //   bevelEnabled: true,
+  //   bevelSegments: 2,
+  //   steps: 2,
+  //   bevelSize: 1,
+  //   bevelThickness: 1
+  // };
+  // const geometry = new THREE.ExtrudeGeometry(main, extrudeSettings);
+  // const mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial());
 
-  car.add(mesh);
+  // car.add(mesh);
 
   return car
 }
