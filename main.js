@@ -57,25 +57,18 @@ function car() {
   main.position.y = 13;
   main.position.x = 8;
   car.add(main);
-  // const main = new THREE.Shape();
-  // main.moveTo(-40, 8);
-  // main.bezierCurveTo( 50, 2, 50, 11, 10, 30 );
 
-  // const extrudeSettings = {
-  //   depth: 8,
-  //   bevelEnabled: true,
-  //   bevelSegments: 2,
-  //   steps: 2,
-  //   bevelSize: 1,
-  //   bevelThickness: 1
-  // };
-  // const geometry = new THREE.ExtrudeGeometry(main, extrudeSettings);
-  // const mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial());
-
-  // car.add(mesh);
+  const cabin = new THREE.Mesh(
+    new THREE.BoxGeometry(40, 12, 29),
+    new THREE.MeshLambertMaterial({ color: 0xffffff })
+  );
+  cabin.position.y = 24
+  car.add(cabin);
 
   return car
 }
+
+
 
 scene.add(car());
 
