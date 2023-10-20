@@ -6,7 +6,7 @@ const scene = new THREE.Scene();
 // camera.position.y = 50;
 
 // camera
-const cameraWidth = 450
+const cameraWidth = 400 // size of camera
 const cameraHeight = cameraWidth / (window.innerWidth / window.innerHeight)
 const camera = new THREE.OrthographicCamera( cameraWidth / -2, cameraWidth / 2, cameraHeight / 2, cameraHeight / -2, 0, 1000);
 camera.position.set(200, 200, 200); // angle of camera
@@ -28,15 +28,32 @@ scene.add(directionalLight);
 
 //wheel
 function createWheels(){
-  const geometry = new THREE.BoxGeometry(12, 12, 33);
+  // const geometry = new THREE.BoxGeometry(12, 12, 33);
+  const geometry = new THREE.CylinderGeometry(7, 7, 33, 64);
   const material = new THREE.MeshLambertMaterial({ color: 0x333333 });
   const wheel = new THREE.Mesh( geometry, material );
   return wheel
 }
 
-const wheel = createWheels();
+function car(){
+  const car = new THREE.Group();
 
-scene.add(wheel);
+  const back = createWheels();
+  back.position.y = 5;
+  back.position.x = -20;
+  back.rotateX(Math.PI / 2);
+  car.add(back);
+
+  const front = createWheels();
+  front.position.y = 5;
+  front.position.x = 25;
+  front.rotateX(Math.PI / 2); 
+  car.add(front);
+
+  return car
+}
+
+scene.add(car());
 
 renderer.render(scene, camera);
 
